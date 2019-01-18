@@ -262,4 +262,5 @@ After creating a date type field to display the year feature, we can start to cr
 * The result view will show as below<br>
 ![tableau-17.png](/images/tableau-17.png)<br><br>
 You can drag the filter bar to explore the AVG(rating) within years<br>
+![tableau-18.gif](/images/tableau-18.gif)<br><br>
 ## Appendix
