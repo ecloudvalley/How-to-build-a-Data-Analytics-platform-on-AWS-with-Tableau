@@ -13,7 +13,7 @@ AWS plays an important role in big data solution. We provide an end-to-end data 
 
 ## Use Case in this Lab
 * Dataset: IMDb dataset <br>
-* ![imdb_logo.svg](/images/imdb_logo.svg)<br>
+* ![imdb_logo.jpg](/images/imdb_logo.jpg)<br>
 https://www.imdb.com/interfaces/<br>
 The data set of 10000+ most popular movies on IMDB in many years. The data points included are:
 Title, Genre, Description, Director, Actors, Year, Runtime, Rating, Votes, Revenue, Metascrore
