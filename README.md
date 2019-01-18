@@ -15,8 +15,9 @@ AWS plays an important role in big data solution. We provide an end-to-end data 
 * Dataset: IMDb dataset <br>
 * ![imdb_logo.svg](/images/imdb_logo.svg)<br>
 https://www.imdb.com/interfaces/<br>
-With the large growth of YouTube, it plays an important role of video service. The large company also use it to determine their ads strategies and marketing plans.
-This use case using trending YouTube video data to analyze which video channel or video type are suitable for advertising. In addition, YouTubers can make themselves more popular by analyzing the trending videos of YouTube. We use AWS Glue to do serverless ETL job and analyze those big data automatically with BI tool that integrate with AWS Athena or AWS Redshift Spectrum.
+The data set of 10000+ most popular movies on IMDB in many years. The data points included are:
+Title, Genre, Description, Director, Actors, Year, Runtime, Rating, Votes, Revenue, Metascrore
+This use case using IMDb data to analyze some interesting insights of movies or TV episode.
 
 
 
@@ -64,7 +65,13 @@ https://www.tableau.com/pricing <br>
 <!-- ![learnflow.png](/images/learnflow.png)<br> -->
 
 ## Lab tutorial
+First of all, login to AWS console
+https://console.aws.amazon.com/console/home
 
+### Create Access key and Secret access key on AWS
+-   To create a new secret access key for your root account, use the  [security credentials page](https://console.aws.amazon.com/iam/home?#security_credential). Expand the  **Access Keys**section, and then click  **Create New Root Key**.
+-   To create a new secret access key for an IAM user, open the  [IAM console](https://console.aws.amazon.com/iam/home?region=ap-southeast-1#home). Click  **Users**  in the  **Details**  pane, click the appropriate IAM user, and then click  **Create Access Key**  on the  **Security Credentials** tab.
+- Download the newly created credentials (**csv file**), when prompted to do so in the key creation wizard
 
 ### Create following IAM roles
 
@@ -202,28 +209,55 @@ The query will take about 10 seconds to run<br>
 
 ### Visualize data with Tableau
 
-The following steps will show you how to integrate Athena with Tableau.<br><br>
+The following steps will show you how to use Tableau to create the views with Athena table.<br><br>
 * 	First you need to download Tableau Desktop on your laptop.<br>
 * In this step assume you have installed Tableau Desktop.<br>
-* 	Open Tableau you will see this screen (Tableau Desktop for example)<br>
-![tableau1.png](/images/tableau1.png)<br>
+* 	Open Tableau Desktop you will see this screen<br>
+![tableau-1.png](/images/tableau-1.png)<br>
 * 	To connect to Athena, click **Amazon Athena** in navigation pane left side <br><br>
-![tableau2.png](/images/tableau2.png)<br>
+![tableau-2.png](/images/tableau-2.png)<br>
 * 	Enter **“athena.us-ap-southeast-1.amazonaws.com”** in **Server**<br><br>
 * 	Enter **port** for 443<br><br>
 * 	Enter Staging Directory for your **Athena query result S3 bucket**<br><br>
 Go to Athena console and click **Settings** to get the staging directory path<br><br>
 ![athena-4.png](/images/athena-4.png)<br>
 ![athena-5.png](/images/athena-5.png)<br><br>
-* 	Enter **Access Key ID** and **Secret Access Key** then click **sign in**<br><br>
-![tableau3.png](/images/tableau3.png)<br>
-* 	Select **AwsDataCatalog** in **Catalog** and select **my-data** in **database**<br><br>
-* 	Drag the table you want to make the chart for<br><br>
-![tableau4.png](/images/tableau4.png)<br><br>
-![tableau5.png](/images/tableau5.png)<br><br>
-1.11. 	Click **New Worksheet** icon below then you can start making your chart to do BI
-![tableau6.png](/images/tableau6.png)<br><br>
-![tableau7.png](/images/tableau7.png)<br><br>
-![tableau8.png](/images/tableau8.png)<br><br>
+* 	Enter **Access Key ID** and **Secret Access Key** which you have created on AWS (**you can view these two items in credential csv**) then click **sign in**<br><br>
+![tableau-3.png](/images/tableau-3.png)<br>
+* 	Select **AwsDataCatalog** in **Catalog** and select **imdb-data** in **database**<br><br>
+![tableau-4.png](/images/tableau-4.png)<br><br>
+* 	Drag the table you want to use<br><br>
+![tableau-5.png](/images/tableau-5.png)<br><br>
+In this lab we use **rating_with_info**<br>
 
+* First, we need to create a **Calculated Field** for column **Startyear** to convert integer format into Date format<br>
+* Click **Create Calculated Field** on column **Startyear**<br>
+![tableau-6.png](/images/tableau-6.png)<br><br>
+* Type the field name **YYYY**<br>
+* Enter below function in the calculated blank<br>
+* `DATE(LEFT(STR([Startyear]), 4) + "-01-01")`<br>
+![tableau-7.png](/images/tableau-7.png)<br><br>
+* Click **OK** and you will find a new field named **YYYY** in the data<br>
+![tableau-8.png](/images/tableau-8.png)<br><br>
+
+After creating a date type field to display the year feature, we can start to create some views to visualize the data<br>
+
+* Click **Sheet1** below<br>
+![tableau-9.png](/images/tableau-9.png)<br><br>
+![tableau-10.png](/images/tableau-10.png)<br><br>
+* For the first view we focus on the **relationship between year and average rating**<br>
+* Drag the Dimension **YYYY** to **Columns** blank<br>
+![tableau-11.png](/images/tableau-11.png)<br><br>
+* Drag the Measures **Averagerating** to **Rows** blank<br>
+![tableau-12.png](/images/tableau-12.png)<br><br>
+* Click the **Averagerating** and change the Measure to **Average**<br>
+![tableau-13.png](/images/tableau-13.png)<br><br>
+![tableau-14.png](/images/tableau-14.png)<br><br>
+* Click **Show Me** at the right and select the line chart (For lines (continuous) try)<br>
+![tableau-15.png](/images/tableau-15.png)<br><br>
+* Click **YYYY** and select **Show Filter**<br>
+![tableau-16.png](/images/tableau-16.png)<br><br>
+* The result view will show as below<br>
+![tableau-17.png](/images/tableau-17.png)<br><br>
+You can drag the filter bar to explore the AVG(rating) within years<br>
 ## Appendix
