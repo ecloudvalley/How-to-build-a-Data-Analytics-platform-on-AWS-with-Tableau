@@ -203,7 +203,9 @@ The query will take about 10 seconds to run<br>
 * 	When the query finished you will find that a new table name **"rating_with_info"** in the Tables list.<br>
 ![athena-3.png](/images/athena-3.png)<br>
 
-* **rating_with_info** table will be used in Tableau to create different views
+* **rating_with_info** table will be used in Tableau to create different views<br>
+* You can also preview **rating_with_info** table to explore the data<br>
+![athena-6.png](/images/athena-6.png)<br>
 
 
 
