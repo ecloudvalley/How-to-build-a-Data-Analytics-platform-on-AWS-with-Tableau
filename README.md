@@ -1,4 +1,5 @@
 
+
 # How to build a Data Analytics platform on AWS with Tableau
 ![dataset.jpg](/images/dataset.jpg)<br>
 **This lab using IMDb movie dataset**
@@ -65,15 +66,15 @@ https://www.tableau.com/pricing <br>
 <!-- ![learnflow.png](/images/learnflow.png)<br> -->
 
 ## Lab tutorial
-First of all, login to AWS console
+First of all, login to AWS console <br>
 https://console.aws.amazon.com/console/home
 
 ### Create Access key and Secret access key on AWS
--   To create a new secret access key for your root account, use the  [security credentials page](https://console.aws.amazon.com/iam/home?#security_credential). Expand the  **Access Keys**section, and then click  **Create New Root Key**.
+-   To create a new secret access key for your root account, use the  [security credentials page](https://console.aws.amazon.com/iam/home?#security_credential). Expand the  **Access Keys** section, and then click  **Create New Root Key**.
 -   To create a new secret access key for an IAM user, open the  [IAM console](https://console.aws.amazon.com/iam/home?region=ap-southeast-1#home). Click  **Users**  in the  **Details**  pane, click the appropriate IAM user, and then click  **Create Access Key**  on the  **Security Credentials** tab.
 - Download the newly created credentials (**csv file**), when prompted to do so in the key creation wizard
 
-### Create following IAM roles
+## Create following IAM roles
 
 * 	On the **service** menu, click **IAM**.<br>
 * 	In the navigation pane, choose **Roles**.<br>
@@ -94,7 +95,7 @@ You successfully create the role that allow AWS Glue get access to S3.<br>
 
 
 
-### Create S3 bucket to store data
+## Create S3 bucket to store data
 
  - In this step we create below two S3 buckets
 
@@ -109,11 +110,11 @@ You successfully create the role that allow AWS Glue get access to S3.<br>
  - Click **Create folder** and enter the name **basics** then click **save**<br><br>
  ![s3-2.png](/images/s3-2.png)<br>
  -  In **basics** folder Click **Upload** and choose **Add files.**<br><br>
- -  Select file **title.basics.tsv** then click **Upload.**.<br><br>
+ -  Select file **title.basics.tsv** then click **Upload**.<br><br>
  ![s3-3.png](/images/s3-3.png)<br>
  -  Click **Create folder** to create another folder named **ratings** as the same way in **1.6**<br><br>
   ![s3-4.png](/images/s3-4.png)<br>
- -  In **ratings** folder Click **Upload** and choose **Add files.**.<br><br>
+ -  In **ratings** folder Click **Upload** and choose **Add files**.<br><br>
  -  Select file **title.ratings.tsv** then click **Upload.**<br><br>
   ![s3-5.png](/images/s3-5.png)<br>
  -  Now **“[your name]-imdb-dataset”** bucket the folder will show as below <br>
@@ -122,17 +123,17 @@ You successfully create the role that allow AWS Glue get access to S3.<br>
  ![s3-7.png](/images/s3-7.png)<br>
  -  Click **Create**.<br><br>
  -  Make sure that your S3 buckets contain those two buckets<br><br>
-![s3-8.png](/images/s3-8.png)<br>
+![s3-8.png](/images/s3-8.png)<br><br>
 
 
 
-### Setup data catalog in AWS Glue
+## Setup data catalog in AWS Glue
 
-Create database, tables, crawlers, jobs in Glue<br><br>
+Create database, tables, crawlers, in Glue Data Catalog<br><br>
 * 	On the **Services** menu, click **AWS Glue**.<br><br>
 * 	In the console, choose **Add database**. In the **Database name**, type **imdb-data**, and choose **Create**.<br><br>
 ![glue-1.png](/images/glue-1.png)<br>
-* 	Choose **Crawlers** in the navigation pane, choose **Add crawler**. Add type Crawler name **basics-crawler**, and choose **Next**.<br><br>
+* 	Choose **Crawlers** in the navigation pane, choose **Add crawler**. Enter the Crawler name **basics-crawler**, and choose **Next**.<br><br>
 ![glue-2.png](/images/glue-2.png)<br>
 * 	On the **Add a data store** page, choose **S3** as data store.<br><br>
 * 	Select **Specified path in my account**.<br><br>
@@ -176,10 +177,10 @@ Now you need to add another ratings table so let's create another crawler<br><br
 ![glue-11.png](/images/glue-11.png)<br>
 
 
-Now you successfully to setup AWS Glue data catalog and create Glue table with IMDb data
+Now you successfully to setup AWS Glue data catalog and create Glue table with IMDb data<br><br>
 
 
-### Analyze the data with Athena
+## Analyze the data with Athena
 
 Athena can query the data in an easy way with data catalog of Glue<br><br>
 * 	On the **Services** menu, click **Athena**.<br><br>
@@ -205,11 +206,11 @@ The query will take about 10 seconds to run<br>
 
 * **rating_with_info** table will be used in Tableau to create different views<br>
 * You can also preview **rating_with_info** table to explore the data<br>
-![athena-6.png](/images/athena-6.png)<br>
+![athena-6.png](/images/athena-6.png)<br><br>
 
 
 
-### Visualize data with Tableau
+## Visualize data with Tableau
 
 The following steps will show you how to use Tableau to create the views with Athena table.<br><br>
 * 	First you need to download Tableau Desktop on your laptop.<br>
@@ -247,7 +248,9 @@ After creating a date type field to display the year feature, we can start to cr
 * Click **Sheet1** below<br>
 ![tableau-9.png](/images/tableau-9.png)<br><br>
 ![tableau-10.png](/images/tableau-10.png)<br><br>
-* For the first view we focus on the **relationship between year and average rating**<br>
+
+### View_1: we focus on the relationship between year and average rating
+
 * Drag the Dimension **YYYY** to **Columns** blank<br>
 ![tableau-11.png](/images/tableau-11.png)<br><br>
 * Drag the Measures **Averagerating** to **Rows** blank<br>
@@ -261,6 +264,29 @@ After creating a date type field to display the year feature, we can start to cr
 ![tableau-16.png](/images/tableau-16.png)<br><br>
 * The result view will show as below<br>
 ![tableau-17.png](/images/tableau-17.png)<br><br>
+* You can change the sheet name or the line color just a few clicks <br><br>
+![tableau-19.png](/images/tableau-19.png)<br><br>
 You can drag the filter bar to explore the AVG(rating) within years<br>
 ![tableau-18.gif](/images/tableau-18.gif)<br><br>
+
+### View_2: we can observe the rating variation of each title type (e.g. movie, short, tvseries, tvepisode, video, etc) among years
+* Open a new worksheet<br>
+![tableau-20.png](/images/tableau-20.png)<br><br>
+* Drag the Dimension **Titletype** to **Columns** blank<br>
+![tableau-21.png](/images/tableau-21.png)<br><br>
+* Drag the Dimension **YYYY** to **Columns** blank<br>
+![tableau-22.png](/images/tableau-22.png)<br><br>
+* Drag the Measures **Averagerating** to **Rows** blank<br>
+![tableau-23.png](/images/tableau-23.png)<br><br>
+* Click the **Averagerating** and change the Measure to **Average**<br>
+![tableau-24.png](/images/tableau-24.png)<br><br>
+* Click **Show Me** at the right and select the line chart (For lines (continuous) try)<br>
+![tableau-25.png](/images/tableau-25.png)<br><br>
+The result view will show as below, you can click **Show Filter** on **Titletype** to select which type to view at the right side<br>
+![tableau-26.png](/images/tableau-26.png)<br><br>
+![tableau-27.png](/images/tableau-27.png)<br><br>
+You will find that the average rating of tvMiniSeries is increasing in recent years<br>
+![tableau-28.png](/images/tableau-28.png)<br><br>
+
+
 ## Appendix
