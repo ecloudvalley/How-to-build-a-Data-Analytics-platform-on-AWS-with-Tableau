@@ -289,4 +289,14 @@ You will find that the average rating of tvMiniSeries is increasing in recent ye
 ![tableau-28.png](/images/tableau-28.png)<br><br>
 
 
+## Clean Resources
+* Delete all the resources you have created in the lab including:<br>
+* AWS Glue (Glue tables, Glue crawlers, Glue database), Amazon S3 (S3 buckets), **Your Access Key**<br>
+
+## Conclusion
+You have learned:<br>
+* How to set up the Glue Data catalog integrates with the S3 data lake<br>
+* How to analyze the data in Glue table with Athena<br>
+* How to use Tableau Desktop to visualize the data in Athena<br>
+
 ## Appendix
