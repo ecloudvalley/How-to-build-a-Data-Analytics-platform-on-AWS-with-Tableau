@@ -1,6 +1,5 @@
 
-
-# How to build a Data Analytics platform on AWS with Tableau
+# Building a Data Analytics platform on AWS with Tableau
 ![dataset.jpg](/images/dataset.jpg)<br>
 **This lab using IMDb movie dataset**
 
@@ -27,10 +26,10 @@ This use case using IMDb data to analyze some interesting insights of movies or 
 ![architecture.png](/images/architecture.png)
 
 As illustrated in the preceding diagram, this is a big data processing in this model:<br><br>
-* 1.&nbsp;&nbsp; 	Upload the IMDb data into the S3 bucket.<br><br>
-* 2.&nbsp;&nbsp; 	Setup Glue data catalog to create Glue table.<br><br>
-* 3.&nbsp;&nbsp; 	Athena runs the query to create target table with Glue data catalog.<br><br>
-* 4.&nbsp;&nbsp; 	Tableau will be configured, connect to Athena, to retrieve data, and show the analytic figure on Tableau dashboard.<br><br>
+1.&nbsp;&nbsp; 	Upload the IMDb data into the S3 bucket.<br><br>
+2.&nbsp;&nbsp; 	Setup Glue data catalog to create Glue table.<br><br>
+3.&nbsp;&nbsp; 	Athena runs the query to create target table with Glue data catalog.<br><br>
+4.&nbsp;&nbsp; 	Tableau will be configured, connect to Athena, to retrieve data, and show the analytic figure on Tableau dashboard.<br><br>
 
 ## Amazon S3 introduction
 What is Amazon S3?
@@ -49,23 +48,29 @@ Athena is out-of-the-box integrated with AWS Glue Data Catalog, allowing you to 
 ### The workshop’s region will be in ‘Singapore’
 
 
-## Prerequisites
-1.	Sign-in a AWS account, and make sure you have select **Singapore** region<br>
-2.	Make sure your account have permission to create IAM role for following services: **S3, Glue, Athena**<br>
-3.	Make sure you have created the **Access key** and **Secret access key** that have **Athena** fully permission to connect to Tableau
-4.	Download **this repository** and unzip, ensure that **data** folder including two files:<br>
+## Step 0 - Prerequisites
+1. Sign-in a AWS account, and make sure you have select **Singapore** region<br>
+2. Make sure your account have permission to create IAM role for following services: **S3, Glue, Athena**<br>
+3. Make sure you have created the **Access key** and **Secret access key** that have **Athena** fully permission to connect to Tableau
+4. Download **this repository** and unzip, ensure that **data** folder including two files:<br>
 **title.basic.tsv**, **title.rating.tsv**<br>
-5.  You need to download **Tableau Desktop** on your laptop.<br>
+5. Download **Tableau Desktop** on your laptop.<br>
 Click below link to download <br>
 https://www.tableau.com/support/releases <br>
 Note that download the latest version (2018.3.2 for this example) <br>
 Make sure that you have license to use Tableau <br>
 https://www.tableau.com/pricing <br>
+6. Setup AWS Athena Driver for Tableau Desktop <br>
+If Java is not already installed on your Mac, download and install the latest Java version from https://www.java.com/en/download. <br>
+Download the JDBC driver (.jar file) from the Amazon Athena User Guide on Amazon's website. <br>
+https://docs.aws.amazon.com/athena/latest/ug/connect-with-jdbc.html <br>
+For Mac, Copy the downloaded .jar file to the /Library/JDBC directory. You might have to create the JDBC directory if it doesn't already exist. <br>
+For Windows, Move the downloaded .jar file to C:\Program Files\Tableau\Drivers.
 
 
 <!-- ![learnflow.png](/images/learnflow.png)<br> -->
 
-## Lab tutorial
+## Step 0 - AWS environment setup
 First of all, login to AWS console <br>
 https://console.aws.amazon.com/console/home
 
@@ -74,7 +79,7 @@ https://console.aws.amazon.com/console/home
 -   To create a new secret access key for an IAM user, open the  [IAM console](https://console.aws.amazon.com/iam/home?region=ap-southeast-1#home). Click  **Users**  in the  **Details**  pane, click the appropriate IAM user, and then click  **Create Access Key**  on the  **Security Credentials** tab.
 - Download the newly created credentials (**csv file**), when prompted to do so in the key creation wizard
 
-## Create following IAM roles
+## Setp 1 - Create IAM roles for Glue service
 
 * 	On the **service** menu, click **IAM**.<br>
 * 	In the navigation pane, choose **Roles**.<br>
@@ -95,7 +100,7 @@ You successfully create the role that allow AWS Glue get access to S3.<br>
 
 
 
-## Create S3 bucket to store data
+## Setp 2 - Create S3 bucket for data lake and staging 
 
  - In this step we create below two S3 buckets
 
@@ -127,7 +132,7 @@ You successfully create the role that allow AWS Glue get access to S3.<br>
 
 
 
-## Setup data catalog in AWS Glue
+## Step 3 - Setup AWS Glue data catalog
 
 Create database, tables, crawlers, in Glue Data Catalog<br><br>
 * 	On the **Services** menu, click **AWS Glue**.<br><br>
@@ -180,9 +185,9 @@ Now you need to add another ratings table so let's create another crawler<br><br
 Now you successfully to setup AWS Glue data catalog and create Glue table with IMDb data<br><br>
 
 
-## Analyze the data with Athena
+## Step 4 - Ad Hoc query in with AWS Athena
 
-Athena can query the data in an easy way with data catalog of Glue<br><br>
+Athena can query the data in an easy way with Glue Data Catalog<br><br>
 * 	On the **Services** menu, click **Athena**.<br><br>
 * 	On the **Query Editor** tab, choose the database **imdb-data**.<br><br>
 ![athena-1.png](/images/athena-1.png)<br>
@@ -209,8 +214,7 @@ The query will take about 10 seconds to run<br>
 ![athena-6.png](/images/athena-6.png)<br><br>
 
 
-
-## Visualize data with Tableau
+## Step 5 - Setup Tableau desktop connection to Athena
 
 The following steps will show you how to use Tableau to create the views with Athena table.<br><br>
 * 	First you need to download Tableau Desktop on your laptop.<br>
@@ -219,7 +223,7 @@ The following steps will show you how to use Tableau to create the views with At
 ![tableau-1.png](/images/tableau-1.png)<br>
 * 	To connect to Athena, click **Amazon Athena** in navigation pane left side <br><br>
 ![tableau-2.png](/images/tableau-2.png)<br>
-* 	Enter **“athena.us-ap-southeast-1.amazonaws.com”** in **Server**<br><br>
+* 	Enter **"athena.ap-southeast-1.amazonaws.com"** in **Server**<br><br>
 * 	Enter **port** for 443<br><br>
 * 	Enter Staging Directory for your **Athena query result S3 bucket**<br><br>
 Go to Athena console and click **Settings** to get the staging directory path<br><br>
@@ -232,6 +236,9 @@ Go to Athena console and click **Settings** to get the staging directory path<br
 * 	Drag the table you want to use<br><br>
 ![tableau-5.png](/images/tableau-5.png)<br><br>
 In this lab we use **rating_with_info**<br>
+
+
+## Step 6 - Visualize data with Tableau
 
 * First, we need to create a **Calculated Field** for column **Startyear** to convert integer format into Date format<br>
 * Click **Create Calculated Field** on column **Startyear**<br>
