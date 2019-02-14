@@ -70,7 +70,7 @@ For Windows, Move the downloaded .jar file to C:\Program Files\Tableau\Drivers.
 
 <!-- ![learnflow.png](/images/learnflow.png)<br> -->
 
-## Step 0 - AWS environment setup
+## Step 1 - AWS environment setup
 First of all, login to AWS console <br>
 https://console.aws.amazon.com/console/home
 
@@ -79,7 +79,7 @@ https://console.aws.amazon.com/console/home
 -   To create a new secret access key for an IAM user, open the  [IAM console](https://console.aws.amazon.com/iam/home?region=ap-southeast-1#home). Click  **Users**  in the  **Details**  pane, click the appropriate IAM user, and then click  **Create Access Key**  on the  **Security Credentials** tab.
 - Download the newly created credentials (**csv file**), when prompted to do so in the key creation wizard
 
-## Setp 1 - Create IAM roles for Glue service
+## Setp 2 - Create IAM roles for Glue service
 
 * 	On the **service** menu, click **IAM**.<br>
 * 	In the navigation pane, choose **Roles**.<br>
@@ -97,10 +97,7 @@ Figure1: IAM role policies<br><br><br>
 You successfully create the role that allow AWS Glue get access to S3.<br>
 
 
-
-
-
-## Setp 2 - Create S3 bucket for data lake and staging 
+## Setp 3 - Create S3 bucket for data lake and staging 
 
  - In this step we create below two S3 buckets
 
@@ -132,7 +129,7 @@ You successfully create the role that allow AWS Glue get access to S3.<br>
 
 
 
-## Step 3 - Setup AWS Glue data catalog
+## Step 4 - Setup AWS Glue data catalog
 
 Create database, tables, crawlers, in Glue Data Catalog<br><br>
 * 	On the **Services** menu, click **AWS Glue**.<br><br>
@@ -185,7 +182,7 @@ Now you need to add another ratings table so let's create another crawler<br><br
 Now you successfully to setup AWS Glue data catalog and create Glue table with IMDb data<br><br>
 
 
-## Step 4 - Ad Hoc query in with AWS Athena
+## Step 5 - Ad Hoc query in with AWS Athena
 
 Athena can query the data in an easy way with Glue Data Catalog<br><br>
 * 	On the **Services** menu, click **Athena**.<br><br>
@@ -214,7 +211,7 @@ The query will take about 10 seconds to run<br>
 ![athena-6.png](/images/athena-6.png)<br><br>
 
 
-## Step 5 - Setup Tableau desktop connection to Athena
+## Step 6 - Setup Tableau desktop connection to Athena
 
 The following steps will show you how to use Tableau to create the views with Athena table.<br><br>
 * 	First you need to download Tableau Desktop on your laptop.<br>
@@ -238,7 +235,7 @@ Go to Athena console and click **Settings** to get the staging directory path<br
 In this lab we use **rating_with_info**<br>
 
 
-## Step 6 - Visualize data with Tableau
+## Step 7 - Visualize data with Tableau
 
 * First, we need to create a **Calculated Field** for column **Startyear** to convert integer format into Date format<br>
 * Click **Create Calculated Field** on column **Startyear**<br>
