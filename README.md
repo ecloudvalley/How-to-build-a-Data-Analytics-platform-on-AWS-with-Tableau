@@ -237,60 +237,8 @@ In this lab we use **rating_with_info**<br>
 
 ## Step 7 - Visualize data with Tableau
 
-* First, we need to create a **Calculated Field** for column **Startyear** to convert integer format into Date format<br>
-* Click **Create Calculated Field** on column **Startyear**<br>
-![tableau-6.png](/images/tableau-6.png)<br><br>
-* Type the field name **YYYY**<br>
-* Enter below function in the calculated blank<br>
-* `DATE(LEFT(STR([Startyear]), 4) + "-01-01")`<br>
-![tableau-7.png](/images/tableau-7.png)<br><br>
-* Click **OK** and you will find a new field named **YYYY** in the data<br>
-![tableau-8.png](/images/tableau-8.png)<br><br>
-
-After creating a date type field to display the year feature, we can start to create some views to visualize the data<br>
-
-* Click **Sheet1** below<br>
-![tableau-9.png](/images/tableau-9.png)<br><br>
-![tableau-10.png](/images/tableau-10.png)<br><br>
-
-### View_1: we focus on the relationship between year and average rating
-
-* Drag the Dimension **YYYY** to **Columns** blank<br>
-![tableau-11.png](/images/tableau-11.png)<br><br>
-* Drag the Measures **Averagerating** to **Rows** blank<br>
-![tableau-12.png](/images/tableau-12.png)<br><br>
-* Click the **Averagerating** and change the Measure to **Average**<br>
-![tableau-13.png](/images/tableau-13.png)<br><br>
-![tableau-14.png](/images/tableau-14.png)<br><br>
-* Click **Show Me** at the right and select the line chart (For lines (continuous) try)<br>
-![tableau-15.png](/images/tableau-15.png)<br><br>
-* Click **YYYY** and select **Show Filter**<br>
-![tableau-16.png](/images/tableau-16.png)<br><br>
-* The result view will show as below<br>
-![tableau-17.png](/images/tableau-17.png)<br><br>
-* You can change the sheet name or the line color just a few clicks <br><br>
-![tableau-19.png](/images/tableau-19.png)<br><br>
-You can drag the filter bar to explore the AVG(rating) within years<br>
-![tableau-18.gif](/images/tableau-18.gif)<br><br>
-
-### View_2: we can observe the rating variation of each title type (e.g. movie, short, tvseries, tvepisode, video, etc) among years
-* Open a new worksheet<br>
-![tableau-20.png](/images/tableau-20.png)<br><br>
-* Drag the Dimension **Titletype** to **Columns** blank<br>
-![tableau-21.png](/images/tableau-21.png)<br><br>
-* Drag the Dimension **YYYY** to **Columns** blank<br>
-![tableau-22.png](/images/tableau-22.png)<br><br>
-* Drag the Measures **Averagerating** to **Rows** blank<br>
-![tableau-23.png](/images/tableau-23.png)<br><br>
-* Click the **Averagerating** and change the Measure to **Average**<br>
-![tableau-24.png](/images/tableau-24.png)<br><br>
-* Click **Show Me** at the right and select the line chart (For lines (continuous) try)<br>
-![tableau-25.png](/images/tableau-25.png)<br><br>
-The result view will show as below, you can click **Show Filter** on **Titletype** to select which type to view at the right side<br>
-![tableau-26.png](/images/tableau-26.png)<br><br>
-![tableau-27.png](/images/tableau-27.png)<br><br>
-You will find that the average rating of tvMiniSeries is increasing in recent years<br>
-![tableau-28.png](/images/tableau-28.png)<br><br>
+Please refer to this video for the configuration on Tableau 
+https://drive.google.com/drive/u/1/folders/1QTpdhcSc4Wo2GfZj2U52QMh8WT_YUxo1
 
 
 ## Clean Resources
