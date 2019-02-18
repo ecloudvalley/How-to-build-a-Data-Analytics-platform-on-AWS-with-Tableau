@@ -238,7 +238,7 @@ In this lab we use **rating_with_info**<br>
 ## Step 7 - Visualize data with Tableau
 
 Please refer to this video for the configuration on Tableau 
-https://drive.google.com/drive/u/1/folders/1QTpdhcSc4Wo2GfZj2U52QMh8WT_YUxo1
+https://drive.google.com/open?id=1HK3bxNRMLOuTkNHqKkmfTRTmYWdKKlIr
 
 
 ## Clean Resources
